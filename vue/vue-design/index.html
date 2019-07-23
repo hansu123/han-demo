@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input {
+            width: 200px;
+            height: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            padding-left: 10px;
+            outline: none;
+        }
+
+        button {
+            padding: 5px 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <h1>普通文本</h1>
+        <p>{{userName}}</p>
+        <h1>双向绑定</h1>
+        <p>
+            {{userName}}
+            <br><br>
+            <input h-model="userName" type="text" placeholder="请输入">
+        </p>
+        <h1>事件</h1>
+        <button v-on="onClick">按钮</button>
+    </div>
+
+    <script src="./compile.js"></script>
+    <script src="./hvue.js"></script>
+    <script>
+        let app = new Hvue({
+            el: "#app",
+            data: {
+                user: { name: "lilei", age: 10 },
+                userName: "hanmeimei"
+            },
+            methods: {
+                onClick() {
+                    alert(this.userName)
+                }
+            }
+        })
+
+
+        //observer观察者，get的时候负责存储派发watcher
+        //watcher监听者，通过set值来触发watcher，watcher触发更新
+        //compile渲染函数，判断不同指令执行不同渲染
+    </script>
+</body>
+
+</html>

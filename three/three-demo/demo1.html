@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    </style>
+</head>
+<body>
+    
+</body>
+<script src="./js/three-r93.js"></script>
+<script>
+//创建场景
+var scene=new THREE.Scene();
+//创建相机，perspectiveCamera(夹角，宽高比，近，远)
+var camera=new THREE.PerspectiveCamera(90,window.innerWidth/window.innerHeight,1,1000);
+//创建渲染对象
+var webGLRenderer=new THREE.WebGLRenderer()
+//渲染背景色
+webGLRenderer.setClearColor("#102");
+//设置渲染屏幕大小
+webGLRenderer.setSize(window.innerWidth,window.innerHeight)
+//插入body中
+document.body.appendChild(webGLRenderer.domElement)
+//创建几何体
+var geometry=new THREE.CubeGeometry(2,2,2)
+//创建几何体皮肤纹理材料
+var material=new THREE.MeshBasicMaterial({color:'red'})
+//承载几何模型的对象
+var cube=new THREE.Mesh(geometry,material)
+//添加到场景中，默认是坐标原点
+scene.add(cube)
+//几何体会和相机位置冲突，所以将相机的z轴向外移动10m
+camera.position.z=10;
+//创建渲染方法
+function render(){
+    //不断渲染
+    requestAnimationFrame(render)
+    //旋转
+    cube.rotation.x+=0.1
+    cube.rotation.z+=0.1
+    webGLRenderer.render(scene,camera)
+}
+render();
+</script>
+</html>

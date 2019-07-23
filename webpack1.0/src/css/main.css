@@ -1,0 +1,8 @@
+#app{
+  width:400px;
+  height:400px;
+  margin:0 auto;
+  background:red;
+  background:url("../imgs/img1.jpg") no-repeat;
+  background-size:cover;
+}
